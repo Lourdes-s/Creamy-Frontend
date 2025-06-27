@@ -4,6 +4,7 @@ import { LoginScreen, RegisterScreen, RecoveryPasswordScreen, ForgotPasswordScre
 import HomeScreen from "./Screens/HomeScreen"
 import ProductDetailScreen from "./Screens/ProductDetailScreen"
 import ProtectedRoute from "./Components/ProtectedRoute"
+import ValidateMailScreen from "./Screens/ValidateMailScreen"
     const App = () => {
         return (
         <div>
@@ -12,6 +13,7 @@ import ProtectedRoute from "./Components/ProtectedRoute"
                 <Route path="/login" element={<LoginScreen/>}/>
                 <Route path="/register" element={<RegisterScreen/>}/>
                 <Route path="/forgot-password" element={<ForgotPasswordScreen/>}/>
+                <Route path="/auth/vverify-email/:validation_token" element={<ValidateMailScreen/>}/>
                 <Route path="/auth/recovery-password/:reset_token" element={<RecoveryPasswordScreen/>}/>
                 <Route element={<ProtectedRoute/>}>
                     <Route path="/home" element={<HomeScreen/>}/>
