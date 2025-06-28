@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import './Slider.css'
+import './slider.css'
 
 
 const Slider = ({ slidesContent }) => {
