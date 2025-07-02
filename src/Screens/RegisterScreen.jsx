@@ -1,31 +1,72 @@
 import React, {useState} from 'react'
-import useForm from '../Hooks/useForm.jsx'
+import Form from '../Components/Form.jsx'
 import { Link, useNavigate } from 'react-router-dom'
 
 const RegisterScreen = () => {
 
-    const navigate = useNavigate()
-
-//cuando invoco a use form (del hook) se crea otro estado del formulario y me devuelve dicho estado y una funcion para asociar a cada input y que modifique mi estado del formulario
-    const {formState, handleChange} = useForm({
-        name: '',
-        email: '',
-        password: ''
-    })
-
-    const [errorState, setErrorState] = useState({
+        const [errorState, setErrorState] = useState({
         name: '',
         email: '',
         password: '',
         general: ''
     })
 
+    const [successState, setSuccess] = useState(false)
 
-    const handlerRegister = async (event) => {
-        event.preventDefault() 
-        console.log('formulario registro enviado')
+    const form_fields = [
+        {
+            label_text: 'Nombre de usuario:',
+            field_component: 'INPUT',
+            field_container_props: {
+                className: 'row_field'
+            },
+            field_data_props: {
+                className: 'input-register',
+                type: 'text',
+                id: 'name',
+                name: 'name',
+                placeholder: 'CosmeFulanito' 
+            }
+        },
+        {
+            label_text: 'Email:',
+            field_component: 'INPUT',
+            field_container_props: {
+                className: 'row_field'
+            },
+            field_data_props: {
+                className: 'input-register',
+                type: 'email',
+                id: 'email',
+                name: 'email',
+                placeholder: 'joedoe@example.com'
+            }
+        },
+        {
+            label_text: 'Contraseña:',
+            field_component: 'INPUT',
+            field_container_props: {
+                className: 'row_field'
+            },
+            field_data_props: {
+                className: 'input-register',
+                type: 'password',
+                id: 'password',
+                name: 'password',
+            }
+        }
+    ]
 
+    const initial_state_form = {
+        name: '',
+        email: '',
+        password: ''
+    }
 
+    const navigate = useNavigate()
+
+    const handlerRegister = async (formState) => {
+        setSuccess(false)
         const responseHTTP = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
@@ -34,74 +75,30 @@ const RegisterScreen = () => {
             body: JSON.stringify(formState)
         })
 
-        console.log(responseHTTP)
-
         const data = await responseHTTP.json()
 
-        console.log(data)
-        //tomar el error que venga del back y setear los errores de ser necesario
-        if(!data.ok){
-            if(data.data.registerState.name.errors){
-                //seteamos el estado de error 
-                setErrorState((prevstate) => {
-                    return {...prevstate, name: data.data.registerState.name.errors}
-                })
-            }
-        }
-        else{
-            navigate('/login')
+                switch (responseHTTP.status) {
+            case 400:
+                setErrorState(data.message)
+                break;
+            case 201:
+                setSuccess(true)
+                setTimeout(() => navigate('/login'), 2000)
+                break;
+            default:
+                setErrorState('Ocurrió un error inesperado. Inténtelo de nuevo.');
+                break;
         }
     }
 
     return (
-        <div>
-            <h1>Registrate aqui</h1>
-            <form onSubmit={handlerRegister}>
-                <div>
-                    <label>Ingresa tu nombre:</label>
-                    <input 
-                        type='text' 
-                        id='name' 
-                        name='name' 
-                        placeholder='Cosme Fulanito' 
-                        onChange={handleChange} 
-                        value={formState.name}
-                    />
-                    {
-                        errorState.name && <span>{errorState.name}</span>
-                    }
-                </div>
-                <div>
-                    <label>Ingresa tu email:</label>
-                    <input 
-                        type='email' 
-                        id='email' 
-                        name='email' 
-                        placeholder='cosmefulanito@gmail.com' 
-                        onChange={handleChange} 
-                        value={formState.email}
-                    />
-                    {
-                        errorState.email && <span>{errorState.email}</span>
-                    }
-                </div>
-                <div>
-                    <label>Ingresa tu contraseña:</label>
-                    <input 
-                        type='password' 
-                        id='password' 
-                        name='password' 
-                        placeholder='Tu_contraseña' 
-                        onChange={handleChange} 
-                        value={formState.password}
-                    />
-                    {
-                        errorState.password && <span>{errorState.password}</span>
-                    }
-                </div>
-                <button type='submit'>Registrar</button>
-                <Link to='/forgot-password'>Olvide mi contraseña</Link>
-            </form>
+        <div className='screen-register'>
+            <h1 className='title-register'>Crea una cuenta</h1>
+            <Form className='form-register' form_fields={form_fields} action={handlerRegister} initial_state_form={initial_state_form} error={errorState}>
+                <button className='button-register' type='submit'>Registrar</button>
+            </Form>
+            {successState && <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>}
+                <Link className='link-register' to='/login'>Iniciar sesion</Link>
         </div>
     )
 }
