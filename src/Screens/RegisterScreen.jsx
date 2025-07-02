@@ -79,14 +79,20 @@ const RegisterScreen = () => {
 
                 switch (responseHTTP.status) {
             case 400:
-                setErrorState(data.message)
+                setErrorState((prev) => ({
+                    ...prev,
+                    general: data.message || 'Error al registrar'
+                }))
                 break;
             case 201:
                 setSuccess(true)
                 setTimeout(() => navigate('/login'), 2000)
                 break;
             default:
-                setErrorState('Ocurrió un error inesperado. Inténtelo de nuevo.');
+                setErrorState((prev) => ({
+                    ...prev,
+                    general: 'Ocurrió un error inesperado. Inténtelo de nuevo.'
+                    }))
                 break;
         }
     }
@@ -98,6 +104,7 @@ const RegisterScreen = () => {
                 <button className='button-register' type='submit'>Registrar</button>
             </Form>
             {successState && <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>}
+            {errorState.general && <span className='error-register'>{errorState.general}</span>}
                 <Link className='link-register' to='/login'>Iniciar sesion</Link>
         </div>
     )
