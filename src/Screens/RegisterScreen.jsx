@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Form from '../Components/Form.jsx'
 import { Link, useNavigate } from 'react-router-dom'
 
 const RegisterScreen = () => {
 
-        const [errorState, setErrorState] = useState({
+    const [errorState, setErrorState] = useState({
         name: '',
         email: '',
         password: '',
@@ -25,7 +25,7 @@ const RegisterScreen = () => {
                 type: 'text',
                 id: 'name',
                 name: 'name',
-                placeholder: 'CosmeFulanito' 
+                placeholder: 'CosmeFulanito'
             }
         },
         {
@@ -66,7 +66,10 @@ const RegisterScreen = () => {
     const navigate = useNavigate()
 
     const handlerRegister = async (formState) => {
+
+        setErrorState({ name: '', email: '', password: '', general: '' })
         setSuccess(false)
+
         const responseHTTP = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
@@ -77,7 +80,7 @@ const RegisterScreen = () => {
 
         const data = await responseHTTP.json()
 
-                switch (responseHTTP.status) {
+        switch (responseHTTP.status) {
             case 400:
                 setErrorState((prev) => ({
                     ...prev,
@@ -86,13 +89,12 @@ const RegisterScreen = () => {
                 break;
             case 201:
                 setSuccess(true)
-                setTimeout(() => navigate('/login'), 2000)
                 break;
             default:
                 setErrorState((prev) => ({
                     ...prev,
                     general: 'Ocurrió un error inesperado. Inténtelo de nuevo.'
-                    }))
+                }))
                 break;
         }
     }
@@ -103,9 +105,11 @@ const RegisterScreen = () => {
             <Form className='form-register' form_fields={form_fields} action={handlerRegister} initial_state_form={initial_state_form} error={errorState}>
                 <button className='button-register' type='submit'>Registrar</button>
             </Form>
-            {successState && <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>}
-            {errorState.general && <span className='error-register'>{errorState.general}</span>}
-                <Link className='link-register' to='/login'>Iniciar sesion</Link>
+            {successState
+                ? <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>
+                : errorState.general && <span className='error-register'>{errorState.general}</span>
+            }
+            <Link className='link-register' to='/login'>Iniciar sesion</Link>
         </div>
     )
 }

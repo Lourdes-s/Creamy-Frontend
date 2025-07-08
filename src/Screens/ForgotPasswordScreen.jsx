@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import useForm from '../Hooks/useForm.jsx'
 import Form from '../Components/Form'
 
 const ForgotPasswordScreen = () => {
+
+    const [errorState, setErrorState] = useState({
+        email: '',
+        general: ''
+    })
+
+    const [successState, setSuccess] = useState(false)
 
     const form_fields = [
         {
@@ -26,7 +32,10 @@ const ForgotPasswordScreen = () => {
     }
 
     const submitForgotPassword = async (form_state) => {
-        //aca podemos hacer lo que queramos, capturarlo y guardarlo en el localstorage, mandar un fetch, etc. y se lo mandamos al formulario
+
+        setErrorState({ email: '', general: '' })
+        setSuccess(false)
+
         const responseHTTP = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`,
             {
                 method: 'POST',
@@ -39,19 +48,37 @@ const ForgotPasswordScreen = () => {
             }
         )
         const data = await responseHTTP.json()
-        console.log(data)
+
+        switch (responseHTTP.status) {
+            case 200:
+                setSuccess(true)
+                break;
+            default:
+                if (!responseHTTP.ok) {
+                    setErrorState((prev) => ({
+                        ...prev,
+                        general: data.message || 'Ocurrió un error inesperado.'
+                    }))
+                }
+                break;
+        }
     }
 
     return (
-        <div>
-            <h1>Restablecer contraseña</h1>
-            <p>Al restablecer tu contraseña se enviara un correo electronico a tu cuenta para que puedas restablecer tu contraseña</p>
-            <Form form_fields={form_fields} action={submitForgotPassword} initial_state_form={initial_state_form}> 
+        <div className='screen-forgot-password'>
+            <h1 className='title-forgot-password'>Restablecer contraseña</h1>
+            <p className='text-forgot-password'>Al restablecer tu contraseña se enviara un correo electronico a tu cuenta para que puedas restablecer tu contraseña</p>
+            <Form className='form-forgot-password' form_fields={form_fields} action={submitForgotPassword} initial_state_form={initial_state_form}>
                 <button type='submit'>Restablecer</button>
-                <Link to='/login'>Iniciar Sesion</Link>
+                <Link className='link-forgot' to='/login'>Iniciar Sesion</Link>
             </Form>
+            {successState
+                ? <span className='success-forgot'>Te enviamos un email para restablecer tu contraseña. Revisá tu casilla.</span>
+                : errorState.general && <span className='error-forgot'>{errorState.general}</span>
+            }
         </div>
     )
 }
 
 export default ForgotPasswordScreen
+
