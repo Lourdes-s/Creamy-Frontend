@@ -103,12 +103,16 @@ const RegisterScreen = () => {
         <div className='screen-register'>
             <h1 className='title-register'>Crea una cuenta</h1>
             <Form className='form-register' form_fields={form_fields} action={handlerRegister} initial_state_form={initial_state_form} error={errorState}>
+                <div className='feedback-messages-register'>
+                    {successState && (
+                        <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>
+                    )}
+                    {!successState && errorState.general && (
+                        <span className='error-register'>{errorState.general}</span>
+                    )}
+                </div>
                 <button className='button-register' type='submit'>Registrar</button>
             </Form>
-            {successState
-                ? <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>
-                : errorState.general && <span className='error-register'>{errorState.general}</span>
-            }
             <Link className='link-register' to='/login'>Iniciar sesion</Link>
         </div>
     )

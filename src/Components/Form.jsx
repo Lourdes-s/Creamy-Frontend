@@ -1,9 +1,8 @@
 import React from 'react'
 import useForm from '../Hooks/useForm'
 
-const Form = ({children, action, form_fields, initial_state_form, error = {}}) => {
-    //children ha referncia a el contenido encerrado como hijo de nuestro componente
-    const {formState, handleChange} = useForm(initial_state_form)
+const Form = ({ children, action, form_fields, initial_state_form, error = {} }) => {
+    const { formState, handleChange } = useForm(initial_state_form)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -12,28 +11,29 @@ const Form = ({children, action, form_fields, initial_state_form, error = {}}) =
 
     return (
         <form onSubmit={handleSubmit}>
-            <FieldList form_fields={form_fields} handleChange={handleChange} formState={formState} error={error}/>
+            <FieldList form_fields={form_fields} handleChange={handleChange} formState={formState} error={error} />
             {children}
         </form>
     )
 }
 
-const FieldList = ({form_fields, handleChange, formState, error}) => {
-    return(
+const FieldList = ({ form_fields, handleChange, formState, error }) => {
+    return (
         form_fields.map((field, index) => {
-            return(
-                <Field 
-                key={index + field.field_data_props.name} 
-                field={field} 
-                handleChange={handleChange} 
-                state_value={formState[field.field_data_props.name]}
-                error={error[field.field_data_props.name]}
+            return (
+                <Field
+                    key={index + field.field_data_props.name}
+                    field={field}
+                    handleChange={handleChange}
+                    state_value={formState[field.field_data_props.name]}
+                    error={error[field.field_data_props.name]}
                 />
             )
         })
     )
 }
-const Field = ({field, handleChange, state_value, error}) => {
+
+const Field = ({ field, handleChange, state_value, error }) => {
     return (
         <>
             <div {...field.field_container_props}>
@@ -46,8 +46,16 @@ const Field = ({field, handleChange, state_value, error}) => {
             {
                 error && (
                     Array.isArray(error)
-                        ? error.map((e, i) => <div key={i}><span className='error-field'>{e.message}</span></div>)
-                        : <div><span className='error-field'>{error}</span></div>
+                        ? error.map((e, i) => (
+                            <div key={i}>
+                                <span className='error-field'>
+                                    {typeof e === 'object' && e.message ? e.message : String(e)}
+                                </span>
+                            </div>
+                        ))
+                        : typeof error === 'string'
+                            ? <div><span className='error-field'>{error}</span></div>
+                            : null
                 )
             }
         </>
