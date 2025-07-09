@@ -91,12 +91,8 @@ const RecoveryPasswordScreen = () => {
                         <span className="success-recovery">Tu contraseña ha sido actualizada correctamente.</span>
                     )}
                     {Array.isArray(errorState.general)
-                        ? errorState.general.map((e, i) => (
-                            <span className="error-recovery" key={i}>{e.message}</span>
-                        ))
-                        : typeof errorState.general === 'string' && (
-                            <span className="error-recovery">{errorState.general}</span>
-                        )
+                        ? errorState.general.map((e, i) => (<span className="error-recovery" key={i}>{e.message}</span>))
+                        : typeof errorState.general === 'string' && (<span className="error-recovery">{errorState.general}</span>)
                     }
                 </div>
                 <button className='button-recovery' type='submit'>Restablecer</button>
