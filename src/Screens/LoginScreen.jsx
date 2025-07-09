@@ -61,15 +61,26 @@ const LoginScreen = () => {
 
         switch (responseHTTP.status) {
             case 400:
-                setErrorState((prev) => ({
-                    ...prev,
-                    general: data.message || 'Solicitud inválida'
-                }))
+                if (data?.message && typeof data.message === 'object') {
+                    const newErrorState = { email: '', password: '', general: '' }
+                    for (const field in data.message) {
+                        const fieldErrors = data.message[field]
+                        if (Array.isArray(fieldErrors)) {
+                            newErrorState[field] = fieldErrors.map(e => e.message)
+                        }
+                    }
+                    setErrorState(newErrorState)
+                } else {
+                    setErrorState((prev) => ({
+                        ...prev,
+                        general: data.message || 'Error al registrar'
+                    }))
+                }
                 break;
             case 404:
                 setErrorState((prev) => ({
                     ...prev,
-                    email:'El email proporcionado no está registrado'
+                    email: 'El email proporcionado no está registrado'
                 }))
                 break;
             case 401:
@@ -95,9 +106,12 @@ const LoginScreen = () => {
         <div className='screen-login'>
             <h1 className='title-login'>Inicia Sesion</h1>
             <Form className='form-login' form_fields={form_fields} action={handleLogin} initial_state_form={initial_state_form} error={errorState}>
+                {Array.isArray(errorState.general)
+                    ? errorState.general.map((e, i) => (<span key={i} className='error-field-login'>{e.message}</span>))
+                    : typeof errorState.general === 'string' && (<span className='error-field-login'>{errorState.general}</span>)
+                }
                 <button className='button-login' type='submit'>Iniciar Sesion</button>
             </Form>
-            {errorState.general && <span className='error-login'>{errorState.general}</span>}
             <Link className='link-login-forgot' to='/forgot-password'>Olvide mi contraseña</Link>
             <Link className='link-login-register' to='/register'>Crear un nuevo usuario</Link>
         </div>
