@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* VARIABLES */
+:root {
+    --color-primario: #a7855f;
+    --color-secundario: #88684a;
+    --color-backgroud-sombra: #e9642f30;
+    --color-background: #f6f2ef;
+    --color-texto: #000000;
+    --text-defaul: "Poppins", sans-serif;
+}
+
+/* GENERALES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--text-defaul);
+}
+
+.screen-login {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    margin: 2rem auto;
+    text-align: center;
+    min-height: 80vh;
+}
+
+.title-login {
+    font-size: 2rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-login {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: var(--color-texto);
+    transition: border-color 0.3s ease;
+    margin: 0.5rem;
+}
+
+.input-login:focus {
+    border-color: var(--color-primario);
+    outline: none;
+}
+
+.button-login {
+    background: var(--color-primario);
+    border: none;
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button-login:hover {
+    background-color: var(--color-secundario);
+}
+
+.link-login-forgot,
+.link-login-register {
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin: 0.3rem;
+}
+
+.link-login-forgot:hover,
+.link-login-register:hover {
+    color: var(--color-primario);
+    text-decoration: underline;
+}
+
+.error-field-login {
+    color: #cc0000;
+    font-size: 0.95rem;
+    margin-top: -0.3rem;
+    margin-bottom: 0.7rem;
+    display: block;
+    font-weight: 500;
+}

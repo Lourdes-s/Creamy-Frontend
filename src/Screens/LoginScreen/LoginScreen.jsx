@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
-import Form from '../Components/Form.jsx'
+import Form from '../../Components/Form.jsx'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../Context/AuthContext.jsx'
+import { AuthContext } from '../../Context/AuthContext.jsx'
+import './login.css'
 
 
 const LoginScreen = () => {
@@ -21,7 +22,7 @@ const LoginScreen = () => {
                 className: 'row_field'
             },
             field_data_props: {
-                className: 'input-register',
+                className: 'input-login',
                 type: 'email',
                 id: 'email',
                 name: 'email',
@@ -35,7 +36,7 @@ const LoginScreen = () => {
                 className: 'row_field'
             },
             field_data_props: {
-                className: 'input-register',
+                className: 'input-login',
                 type: 'password',
                 id: 'password',
                 name: 'password',
@@ -106,10 +107,14 @@ const LoginScreen = () => {
         <div className='screen-login'>
             <h1 className='title-login'>Inicia Sesion</h1>
             <Form className='form-login' form_fields={form_fields} action={handleLogin} initial_state_form={initial_state_form} error={errorState}>
-                {Array.isArray(errorState.general)
-                    ? errorState.general.map((e, i) => (<span key={i} className='error-field-login'>{e.message}</span>))
-                    : typeof errorState.general === 'string' && (<span className='error-field-login'>{errorState.general}</span>)
-                }
+                {Array.isArray(errorState.general) && errorState.general.map((e, i) => (
+                    <span key={i} className='error-field-login'>{e.message}</span>
+                ))}
+
+                {typeof errorState.general === 'string' && errorState.general !== '' && (
+                    <span className='error-field-login'>{errorState.general}</span>
+                )}
+
                 <button className='button-login' type='submit'>Iniciar Sesion</button>
             </Form>
             <Link className='link-login-forgot' to='/forgot-password'>Olvide mi contraseña</Link>
