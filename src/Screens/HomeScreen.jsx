@@ -3,6 +3,7 @@ import useProducts from '../Hooks/useProducts'
 import { Link } from 'react-router-dom'
 import Slider from '../Components/Common/Slider/Slider'
 import { homeSliderImages } from '../Data/sliderData.js'
+import Nav from '../Components/Common/Nav/Nav'
 
 
 
@@ -10,10 +11,10 @@ const HomeScreen = () => {
     const {products_state, products_loading_state, products_error_state} = useProducts()
     return (
         <div>
+            <Nav/>
             <Slider slidesContent={homeSliderImages} />
             <Link to={'/product/new'}>Vender</Link>
             <h1>Bienvenido</h1>
-            {/* ver si el usuario tiene rol de admin y si tiene rol de admin mostrar el boton de crear producto, el boton te llevara a /product/new y nos mostrara un formulario para crear un producto */}
             <div>
                 {
                     products_loading_state 
