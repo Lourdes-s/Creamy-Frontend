@@ -16,7 +16,7 @@ const Slider = ({ slidesContent }) => {
     const slidesRef = useRef([]);      // Ref para cada div.slide (será un array de refs)
     const timeoutRef = useRef(null);   // Ref para almacenar el ID del setTimeout (para el avance automático)
 
-const goToNext = () => {
+    const goToNext = () => {
         setCurrentIndex((prevIndex) => (prevIndex === totalSlides - 1 ? 0 : prevIndex + 1));
     }
 
@@ -61,20 +61,17 @@ const goToNext = () => {
             <div className="slider">
                 <div className="slide_viewer">
                     <div className="slide_group" ref={slideGroupRef}>
-                        {
-                            slidesContent.map((content, index) => (
-                                <div key={index} className="slide" ref={el => (slidesRef.current[index] = el)}>
-                                    <img src={content} alt={`Slide ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                </div>
-                            ))
-                        }
+                        {slidesContent.map((content, index) => (
+                            <div key={index} className="slide" ref={el => (slidesRef.current[index] = el)}>
+                                <img src={content} alt={`Slide ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            </div>
+                        ))}
+                    </div>
+                    <div className="directional_nav">
+                        <button className="previous_btn" onClick={goToPrev}><SlArrowLeft /></button>
+                        <button className="next_btn" onClick={goToNext}><SlArrowRight /></button>
                     </div>
                 </div>
-            </div>
-
-            <div className="directional_nav">
-                <button className="previous_btn"><SlArrowLeft /></button>
-                <button className="next_btn"><SlArrowRight /></button>
             </div>
         </div>
     )
