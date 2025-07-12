@@ -43,7 +43,7 @@ const Nav = () => {
                     </div>
                 </div>
                 <a href="/contact" className="nav-link">Contacto</a>
-                <a href="/about" className="nav-link">Sobre Creamy</a>
+                <a href="/about_us" className="nav-link">Sobre Creamy</a>
             </div>
             <div className='nav-right'>
                 {is_authenticated_state ? (
