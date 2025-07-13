@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaUser, FaShoppingCart, FaPlus } from 'react-icons/fa'
 import { AuthContext } from '../../../Context/AuthContext'
+import LogoCreamy from '../../../Assets/images/Logo.png'
 import './nav.css'
 
 const Nav = () => {
@@ -26,14 +27,9 @@ const Nav = () => {
     return (
         <nav className='navbar'>
             <div className='nav-left'>
-                <Link to="/home" className="logo">Creamy</Link>
+                <Link to="/home" className="logo"> <img src={LogoCreamy} alt="logo"/></Link>
                 <div className='dropdown' ref={dropdownRef}>
-                    <button
-                        className='dropdown-toggle'
-                        onClick={() => setShowDropdown(!showDropdown)}
-                    >
-                        Productos
-                    </button>
+                    <button className='dropdown-toggle' onClick={() => setShowDropdown(!showDropdown)}> Productos </button>
                     <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
                         <Link to='/categoria/cuidado-capilar'>Cuidado capilar</Link>
                         <Link to='/categoria/cuidado-personal'>Cuidado personal</Link>

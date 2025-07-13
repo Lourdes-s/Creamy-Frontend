@@ -37,10 +37,21 @@
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: var(--color-primario);
     text-decoration: none;
+    display: block;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.logo img:hover {
+    filter: brightness(1.05);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
 }
 
 .dropdown {
