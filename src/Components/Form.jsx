@@ -39,9 +39,13 @@ const Field = ({ field, handleChange, state_value, error }) => {
             <div {...field.field_container_props}>
                 {field.label_text && <label>{field.label_text}</label>}
                 {
-                    field.field_component === 'INPUT' &&
+                    field.field_component === 'INPUT' && (
                     <input {...field.field_data_props} onChange={handleChange} value={state_value} />
-                }
+                )}
+                {
+                field.field_component === 'TEXTAREA' && (
+                    <textarea {...field.field_data_props} onChange={handleChange} value={state_value}/>
+                )}
             </div>
             {
                 error && (
