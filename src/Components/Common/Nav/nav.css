@@ -24,7 +24,6 @@
     align-items: center;
     padding: 1rem 2rem;
     background-color: var(--color-background);
-    box-shadow: 0 8px 20px var(--color-backgroud-sombra);
     z-index: 1;
     border-bottom: 1px solid var(--color-primario);
 }
