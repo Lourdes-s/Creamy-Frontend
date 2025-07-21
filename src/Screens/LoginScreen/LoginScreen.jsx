@@ -92,7 +92,7 @@ const LoginScreen = () => {
                 }))
                 break;
             case 200:
-                login(data.access_token, data.user.id)
+                login(data.access_token, data.user)
                 break;
             default:
                 setErrorState((prev) => ({

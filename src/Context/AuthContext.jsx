@@ -1,42 +1,47 @@
-import { createContext, useEffect, useState } from "react" 
+import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-//es un componente
 export const AuthContext = createContext()
 
-//componente proveedor
-export const AuthProvider = ({children}) => {
-//children es una prop para pasar el contenido hijo de nuestro componente
-//nuestra condicion va a ser que si hay token en el local/sesionstorage entonces el usuario esta autenticado
+export const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
+
     const [is_authenticated_state, setIsAuthenticated] = useState(Boolean(sessionStorage.getItem('access-token')))
-    useEffect(
-        () => {
-            Boolean(sessionStorage.getItem('access-token')) && setIsAuthenticated(true)
-        }, []
+    const [user, setUser] = useState(
+        sessionStorage.getItem('user')
+            ? JSON.parse(sessionStorage.getItem('user'))
+            : null
     )
-    const login = (auth_token) => {
+
+    // esto es por si refresca y el token existe pero no el usuario
+    useEffect(() => {
+        const token = sessionStorage.getItem('access-token')
+        const storedUser = sessionStorage.getItem('user')
+
+        if (token && storedUser) {
+            setIsAuthenticated(true)
+            setUser(JSON.parse(storedUser))
+        }
+    }, [])
+
+    const login = (auth_token, user_data) => {
         sessionStorage.setItem('access-token', auth_token)
+        sessionStorage.setItem('user', JSON.stringify(user_data))
+        setUser(user_data)
         setIsAuthenticated(true)
         navigate('/home')
-    } 
+    }
 
     const logout = () => {
         sessionStorage.removeItem('access-token')
+        sessionStorage.removeItem('user')
+        setUser(null)
         setIsAuthenticated(false)
         navigate('/login')
     }
 
     return (
-        <AuthContext.Provider
-            value={
-                {
-                    is_authenticated_state,
-                    login,
-                    logout
-                }
-            }
-        >
+        <AuthContext.Provider value={{ is_authenticated_state, user, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

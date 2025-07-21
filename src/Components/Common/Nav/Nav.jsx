@@ -55,7 +55,7 @@ const Nav = () => {
                 </Link>
 
                 {isAdmin && (
-                    <Link to="/admin/agregar-producto" className="icon-link">
+                    <Link to={'/product/new'} className="icon-link">
                         <FaPlus />
                     </Link>
                 )}
