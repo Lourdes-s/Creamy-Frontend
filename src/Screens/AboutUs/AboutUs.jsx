@@ -1,7 +1,7 @@
 import React from 'react'
 import CreamyAboutImg from '../../Assets/images/Creamy_about.png'
 import Nav from '../../Components/Common/Nav/Nav'
-import './aboutus.css'
+import './aboutUs.css'
 
 const AboutUs = () => {
     return (
