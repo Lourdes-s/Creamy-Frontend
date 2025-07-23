@@ -3,6 +3,7 @@ import useProducts from '../../Hooks/useProducts.jsx'
 import { Link } from 'react-router-dom'
 import Slider from '../../Components/Common/Slider/Slider.jsx'
 import { homeSliderImages } from '../../Data/sliderData.js'
+import ProductCard from '../../Components/Common/ProductCard/ProductCard.jsx'
 import Nav from '../../Components/Common/Nav/Nav.jsx'
 import './home.css'
 
@@ -27,7 +28,7 @@ const HomeScreen = () => {
                                         products_state.map(
                                             (product) => {
                                                 return (
-                                                    <Product product={product} key={product._id} />
+                                                    <ProductCard product={product} key={product._id} />
                                                 )
                                             }
                                         )
@@ -41,18 +42,3 @@ const HomeScreen = () => {
 }
 
 export default HomeScreen
-
-const Product = ({ product }) => {
-    return (
-        <div className='product-card' key={product._id}>
-            <img src={product.image_base64} alt={product.title} className='product-image' />
-            <div className='product-info'>
-                <h3>{product.title}</h3>
-                <div className='product-details'>
-                    <span className='product-price'>Precio {Number(product.price).toLocaleString('es-AR')}</span>
-                    <Link to={`/product/${product._id}`} className='product-link'>Ver detalle</Link>
-                </div>
-            </div>
-        </div>
-    )
-}

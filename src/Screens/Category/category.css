@@ -18,50 +18,33 @@
     font-family: var(--text-defaul);
 }
 
-.screen-home {
+.screen-category {
     background-color: var(--color-background);
-    padding-bottom: 3rem;
+    min-height: 100vh;
 }
 
-.intro-home {
-    text-align: center;
-    font-size: 1rem;
-    max-width: 800px;
-    margin: 1.5rem auto;
-    color: var(--color-texto);
-    opacity: 0.85;
-    line-height: 1.5;
-}
-
-.title-home {
-    text-align: center;
+.title-category {
     font-size: 1.8rem;
-    margin: 2rem auto;
+    text-align: center;
     color: var(--color-texto);
-    max-width: 90%;
+    margin: 2rem 0 1.5rem;
+    text-transform: capitalize;
 }
 
-.products-container-home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    min-height: 300px;
-}
-
-.products-grid-home {
+.products-grid-category {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
-    width: 100%;
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-/* Feedback */
-.loading-home,
-.error-home {
+.loading-category,
+.error-category {
+    display: block;
+    text-align: center;
     font-size: 1.2rem;
     color: var(--color-secundario);
-    text-align: center;
     margin-top: 2rem;
 }

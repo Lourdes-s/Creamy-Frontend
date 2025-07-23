@@ -5,7 +5,7 @@ import { getAuthenticatedHeaders } from "../../utils/fetching.js"
 import './createProduct.css'
 
 const categories = [
-    'Dermocosmética',
+    'Dermocosmetica',
     'Cuidado capilar',
     'Cuidado personal',
     'Fragancias',
