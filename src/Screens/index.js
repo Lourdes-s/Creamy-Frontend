@@ -8,5 +8,6 @@ import AboutUs from "./AboutUs/AboutUs"
 import ContactScreen from "./Contact/ContactScreen"
 import CartScreen from "./Cart/CartScreen"
 import HomeScreen from "./Home/HomeScreen"
+import ProductDetailScreen from "./ProductDetail/ProductDetailScreen"
 
-export { LoginScreen, RegisterScreen, ForgotPasswordScreen, RecoveryPasswordScreen, CreateProductScreen, ValidateMailScreen, AboutUs, ContactScreen, CartScreen, HomeScreen}                      
+export { LoginScreen, RegisterScreen, ForgotPasswordScreen, RecoveryPasswordScreen, CreateProductScreen, ValidateMailScreen, AboutUs, ContactScreen, CartScreen, HomeScreen, ProductDetailScreen}                      

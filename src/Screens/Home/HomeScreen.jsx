@@ -43,7 +43,6 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const Product = ({ product }) => {
-
     return (
         <div className='product-card' key={product._id}>
             <img src={product.image_base64} alt={product.title} className='product-image' />
