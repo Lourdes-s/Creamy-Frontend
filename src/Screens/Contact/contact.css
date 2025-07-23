@@ -108,25 +108,3 @@ body {
     background-color: var(--color-primario);
     transform: translateY(-2px);
 }
-
-
-/* MEDIA QUERIES */
-@media (max-width: 768px) {
-    .form-container {
-        padding: 0 15px;
-    }
-    
-    .contact-form {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .contact-form {
-        padding: 1.25rem;
-    }
-    
-    .button-contact {
-        max-width: 100%;
-    }
-}

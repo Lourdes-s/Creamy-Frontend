@@ -1,7 +1,6 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import { LoginScreen, RegisterScreen, RecoveryPasswordScreen, ForgotPasswordScreen, CreateProductScreen, ValidateMailScreen, AboutUs, ContactScreen, CartScreen} from "./Screens"
-import HomeScreen from "./Screens/HomeScreen"
+import { LoginScreen, RegisterScreen, RecoveryPasswordScreen, ForgotPasswordScreen, CreateProductScreen, ValidateMailScreen, AboutUs, ContactScreen, CartScreen, HomeScreen} from "./Screens"
 import ProductDetailScreen from "./Screens/ProductDetailScreen"
 import ProtectedRoute from "./Components/ProtectedRoute"
     const App = () => {
