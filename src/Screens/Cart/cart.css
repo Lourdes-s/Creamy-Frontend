@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* VARIABLES */
+:root {
+    --color-primario: #a7855f;
+    --color-secundario: #88684a;
+    --color-backgroud-sombra: #e9642f30;
+    --color-background: #f6f2ef;
+    --color-texto: #000000;
+    --text-defaul: "Poppins", sans-serif;
+}
+
+/* GENERALES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--text-defaul);
+}
+.cart-screen {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fefaf7;
+    min-height: 100vh;
+}
+
+.cart-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.cart-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+}
+
+.cart-empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 2rem;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.cart-item-details h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.cart-item-details p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.cart-summary {
+    text-align: right;
+    border-top: 1px solid #ddd;
+    padding-top: 1.5rem;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.cart-checkout-button {
+    background-color: #00b894;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-checkout-button:hover {
+    background-color: #019170;
+}
+
+.cart-error, .cart-loading {
+    text-align: center;
+    color: #e17055;
+    margin-top: 3rem;
+}

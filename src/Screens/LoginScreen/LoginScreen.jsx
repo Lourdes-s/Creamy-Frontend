@@ -92,6 +92,8 @@ const LoginScreen = () => {
                 }))
                 break;
             case 200:
+                sessionStorage.setItem('access-token', data.access_token)
+                sessionStorage.setItem('user', JSON.stringify(data.user))
                 login(data.access_token, data.user)
                 break;
             default:
