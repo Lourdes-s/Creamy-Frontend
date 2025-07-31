@@ -76,20 +76,21 @@ const useCart = () => {
 
     const clearCart = async () => {
         try {
+            setLoading(true)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/clear`, {
                 method: 'DELETE',
                 headers: getAuthenticatedHeaders()
-            });
-            if (!response.ok) throw new Error("Error al vaciar carrito")
+            })
             const data = await response.json()
-            if (data?.payload?.cart && Array.isArray(data.payload.cart)) {
-                setCart(data.payload.cart)
-            } else {
-                setCart([]) 
-            }
-        } catch (err) {
-            console.error("Error al vaciar carrito", err)
+            if (!response.ok)
+                throw new Error(data.message || "Error al vaciar carrito")
             setCart([])
+            await fetchCart()
+        }
+        catch (err) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
         }
     }
 
