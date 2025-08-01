@@ -7,6 +7,8 @@ import ProtectedRoute from "./Components/ProtectedRoute"
         <div>
             <Routes>
                 <Route path="/" element={<LoginScreen/>}/>
+                <Route path="/home" element={<HomeScreen/>}/>
+                <Route path="/product/:product_id"  element={<ProductDetailScreen/>}/>
                 <Route path="/login" element={<LoginScreen/>}/>
                 <Route path="/register" element={<RegisterScreen/>}/>
                 <Route path="/forgot-password" element={<ForgotPasswordScreen/>}/>
@@ -17,8 +19,6 @@ import ProtectedRoute from "./Components/ProtectedRoute"
                 <Route path="/categoria/:category_name" element={<CategoryScreen/>}/>
                 <Route element={<ProtectedRoute/>}>
                     <Route path="/carrito" element={<CartScreen/>}/>
-                    <Route path="/home" element={<HomeScreen/>}/>
-                    <Route path="/product/:product_id"  element={<ProductDetailScreen/>}/>
                     <Route path="/product/new" element={<CreateProductScreen/>}/>
                 </Route>
             </Routes>
