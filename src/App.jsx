@@ -6,7 +6,7 @@ import ProtectedRoute from "./Components/ProtectedRoute"
         return (
         <div>
             <Routes>
-                <Route path="/" element={<LoginScreen/>}/>
+                <Route path="/" element={<HomeScreen/>}/>
                 <Route path="/home" element={<HomeScreen/>}/>
                 <Route path="/product/:product_id"  element={<ProductDetailScreen/>}/>
                 <Route path="/login" element={<LoginScreen/>}/>
