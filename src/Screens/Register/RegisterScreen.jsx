@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import Form from '../Components/Form.jsx'
+import Form from '../../Components/Form.jsx'
 import { Link } from 'react-router-dom'
+import Nav from '../../Components/Common/Nav/Nav.jsx'
+import './register.css'
 
 const RegisterScreen = () => {
 
@@ -111,22 +113,25 @@ const RegisterScreen = () => {
     }
 
     return (
-        <div className='screen-register'>
-            <h1 className='title-register'>Crea una cuenta</h1>
-            <Form className='form-register' form_fields={form_fields} action={handlerRegister} initial_state_form={initial_state_form} error={errorState}>
-                <div className='feedback-messages-register'>
-                    {successState && (
-                        <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>
-                    )}
-                    {Array.isArray(errorState.general)
-                        ? errorState.general.map((e, i) => (<span key={i} className='error-field'>{e.message}</span>))
-                        : typeof errorState.general === 'string' && (<span className='error-field'>{errorState.general}</span>)
-                    }
-                </div>
-                <button className='button-register' type='submit'>Registrar</button>
-            </Form>
-            <Link className='link-register' to='/login'>Iniciar sesion</Link>
-        </div>
+        <>
+            <Nav />
+            <div className='screen-register'>
+                <h1 className='title-register'>Crea una cuenta</h1>
+                <Form className='form-register' form_fields={form_fields} action={handlerRegister} initial_state_form={initial_state_form} error={errorState}>
+                    <div className='feedback-messages-register'>
+                        {successState && (
+                            <span className='success-register'>Usuario creado exitosamente, revise su correo electronico para verificar su cuenta</span>
+                        )}
+                        {Array.isArray(errorState.general)
+                            ? errorState.general.map((e, i) => (<span key={i} className='error-field'>{e.message}</span>))
+                            : typeof errorState.general === 'string' && (<span className='error-field'>{errorState.general}</span>)
+                        }
+                    </div>
+                    <button className='button-register' type='submit'>Registrar</button>
+                </Form>
+                <Link className='link-register' to='/login'>Iniciar sesion</Link>
+            </div>
+        </>
     )
 }
 

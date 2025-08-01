@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Form from '../Components/Form.jsx'
+import Form from '../../Components/Form.jsx'
+import Nav from '../../Components/Common/Nav/Nav.jsx'
+import './recoveryPassword.css'
 
 const RecoveryPasswordScreen = () => {
     const { reset_token } = useParams()
@@ -83,22 +85,25 @@ const RecoveryPasswordScreen = () => {
     }
 
     return (
-        <div className='screen-recovery'>
-            <h1 className='title-recovery'>Modifica tu contraseña</h1>
-            <Form className='form-recovery' error={errorState} action={actionRecoveryPassword} form_fields={form_fields} initial_state_form={initial_state_form}>
-                <div className="feedback-messages-recovery">
-                    {successState && (
-                        <span className="success-recovery">Tu contraseña ha sido actualizada correctamente.</span>
-                    )}
-                    {Array.isArray(errorState.general)
-                        ? errorState.general.map((e, i) => (<span className="error-recovery" key={i}>{e.message}</span>))
-                        : typeof errorState.general === 'string' && (<span className="error-recovery">{errorState.general}</span>)
-                    }
-                </div>
-                <button className='button-recovery' type='submit'>Restablecer</button>
-            </Form>
-            <Link className='link-recovery' to='/login'>Iniciar Sesión</Link>
-        </div>
+        <>
+            <Nav />
+            <div className='screen-recovery'>
+                <h1 className='title-recovery'>Modifica tu contraseña</h1>
+                <Form className='form-recovery' error={errorState} action={actionRecoveryPassword} form_fields={form_fields} initial_state_form={initial_state_form}>
+                    <div className="feedback-messages-recovery">
+                        {successState && (
+                            <span className="success-recovery">Tu contraseña ha sido actualizada correctamente.</span>
+                        )}
+                        {Array.isArray(errorState.general)
+                            ? errorState.general.map((e, i) => (<span className="error-recovery" key={i}>{e.message}</span>))
+                            : typeof errorState.general === 'string' && (<span className="error-recovery">{errorState.general}</span>)
+                        }
+                    </div>
+                    <button className='button-recovery' type='submit'>Restablecer</button>
+                </Form>
+                <Link className='link-recovery' to='/login'>Iniciar Sesión</Link>
+            </div>
+        </>
     )
 }
 

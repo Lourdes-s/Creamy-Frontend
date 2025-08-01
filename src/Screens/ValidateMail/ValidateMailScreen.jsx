@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import Nav from '../../Components/Common/Nav/Nav.jsx'
+import './validateMail.css'
 
 const ValidateMailScreen = () => {
     const { validation_token } = useParams()
@@ -32,7 +34,7 @@ const ValidateMailScreen = () => {
                 })
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
             setValidationEmailResponseState({
                 is_loading: false,
                 response: null,
@@ -46,11 +48,14 @@ const ValidateMailScreen = () => {
     }, [validation_token])
 
     return (
-        <div className ='validate-mail-container'>
-            {validationEmailResponseState.is_loading && <h2 className='loading-message-validate'>Cargando...</h2>}
-            {validationEmailResponseState.is_error && <h2 className="error-message-validate">{validationEmailResponseState.is_error}</h2>}
-            {validationEmailResponseState.response && <h2 className="success-message-validate">¡Correo verificado correctamente!</h2>}
-        </div>
+        <>
+            <Nav />
+            <div className='validate-mail-container'>
+                {validationEmailResponseState.is_loading && <h2 className='loading-message-validate'>Cargando...</h2>}
+                {validationEmailResponseState.is_error && <h2 className="error-message-validate">{validationEmailResponseState.is_error}</h2>}
+                {validationEmailResponseState.response && <h2 className="success-message-validate">¡Correo verificado correctamente!</h2>}
+            </div>
+        </>
     )
 }
 

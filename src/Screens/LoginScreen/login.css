@@ -26,7 +26,7 @@
     width: 450px;
     margin: 2rem auto;
     text-align: center;
-    min-height: 80vh;
+    min-height: 60vh;
 }
 
 .title-login {
@@ -67,6 +67,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    margin: 0.5rem;
 }
 
 .button-login:hover {

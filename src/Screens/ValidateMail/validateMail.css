@@ -1,0 +1,32 @@
+.validate-mail-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    margin: 4rem auto;
+    text-align: center;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-message-validate {
+    font-size: 1.2rem;
+    color: var(--color-secundario);
+    font-weight: 500;
+}
+
+.error-message-validate {
+    font-size: 1.2rem;
+    color: #cc0000;
+    font-weight: 500;
+}
+
+.success-message-validate {
+    font-size: 1.2rem;
+    color: #2e7d32;
+    font-weight: 500;
+}

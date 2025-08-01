@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Form from '../../Components/Form.jsx'
+import Nav from '../../Components/Common/Nav/Nav.jsx'
+import './forgotPassword.css'
 
 const ForgotPasswordScreen = () => {
 
@@ -65,22 +67,25 @@ const ForgotPasswordScreen = () => {
     }
 
     return (
-        <div className='screen-forgot'>
-            <h1 className='title-forgot'>Restablecer contraseña</h1>
-            <p className='text-forgot'>Al restablecer tu contraseña se enviara un correo electronico a tu cuenta para que puedas restablecer tu contraseña</p>
-            <Form className='form-forgot' form_fields={form_fields} action={submitForgotPassword} initial_state_form={initial_state_form}>
-                <div className="feedback-messages-forgot">
-                    {successState && (
-                        <span className="success-forgot">Te enviamos un email para restablecer tu contraseña. Revisá tu casilla.</span>
-                    )}
-                    {!successState && errorState.general && (
-                        <span className="error-forgot">{errorState.general}</span>
-                    )}
-                </div>
-                <button className='button-forgot' type='submit'>Restablecer</button>
-            </Form>
-            <Link className='link-forgot' to='/login'>Iniciar Sesion</Link>
-        </div>
+        <>
+            <Nav />
+            <div className='screen-forgot'>
+                <h1 className='title-forgot'>Restablecer contraseña</h1>
+                <p className='text-forgot'>Al restablecer tu contraseña se enviara un correo electronico a tu cuenta para que puedas restablecer tu contraseña</p>
+                <Form className='form-forgot' form_fields={form_fields} action={submitForgotPassword} initial_state_form={initial_state_form}>
+                    <div className="feedback-messages-forgot">
+                        {successState && (
+                            <span className="success-forgot">Te enviamos un email para restablecer tu contraseña. Revisá tu casilla.</span>
+                        )}
+                        {!successState && errorState.general && (
+                            <span className="error-forgot">{errorState.general}</span>
+                        )}
+                    </div>
+                    <button className='button-forgot' type='submit'>Restablecer</button>
+                </Form>
+                <Link className='link-forgot' to='/login'>Iniciar Sesion</Link>
+            </div>
+        </>
     )
 }
 
