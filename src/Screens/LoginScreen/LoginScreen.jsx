@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import Form from '../../Components/Form.jsx'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthContext.jsx'
+import  Nav from '../../Components/Common/Nav/Nav.jsx'
 import './login.css'
 
 
@@ -106,6 +107,8 @@ const LoginScreen = () => {
     }
 
     return (
+        <>
+        <Nav />
         <div className='screen-login'>
             <h1 className='title-login'>Inicia Sesion</h1>
             <Form className='form-login' form_fields={form_fields} action={handleLogin} initial_state_form={initial_state_form} error={errorState}>
@@ -122,6 +125,7 @@ const LoginScreen = () => {
             <Link className='link-login-forgot' to='/forgot-password'>Olvide mi contraseña</Link>
             <Link className='link-login-register' to='/register'>Crear un nuevo usuario</Link>
         </div>
+        </>
     )
 }
 

@@ -4,7 +4,7 @@
 :root {
     --color-primario: #a7855f;
     --color-secundario: #88684a;
-    --color-backgroud-sombra: #e9642f30;
+    --color-backgroud-sombra: #75462623;
     --color-background: #f6f2ef;
     --color-texto: #000000;
     --text-defaul: "Poppins", sans-serif;
@@ -63,16 +63,18 @@
     cursor: pointer;
     font-size: 1rem;
     color: var(--color-texto);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .dropdown-menu {
     position: absolute;
     top: 2.5rem;
-    min-width: 300px;
-    left: 0;
+    min-width: 220px;
     background: var(--color-background);
     padding: 0.5rem 1rem;
-    box-shadow: 0 8px 20px var(--color-backgroud-sombra);
+    box-shadow: 0 8px 20px #a7855f49;
     border-radius: 8px;
     z-index: 10;
     display: flex;
@@ -84,26 +86,53 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.dropdown-menu.right {
+    right: 0;
+    left: auto;
+}
+
 .dropdown-menu.show {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
-.dropdown-menu a {
+.dropdown-menu a,
+.dropdown-item {
     color: var(--color-texto);
     text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    padding: 0.3rem 0;
 }
 
-.dropdown-menu a:hover {
+.dropdown-menu a:hover,
+.dropdown-item:hover {
     color: var(--color-primario);
 }
 
-.dropdown-toggle:hover,
-.nav-link:hover,
-.user-info:hover,
-.icon-link:hover {
-    color: var(--color-primario);
+.user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-background);
+    border: 1px solid #ccc;
+    z-index: 10;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.user-menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 100%;
+    text-align: left;
 }
 
 .nav-link,
@@ -111,4 +140,10 @@
     text-decoration: none;
     color: var(--color-texto);
     position: relative;
+}
+
+.nav-link:hover,
+.icon-link:hover,
+.dropdown-toggle:hover{
+    color: var(--color-primario);
 }

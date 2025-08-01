@@ -19,7 +19,7 @@ const CartScreen = () => {
     return (
         <div className='cart-screen'>
             <Nav />
-            <div className='cart-sidebar'>
+            <div className='cart-container'>
                 <h1 className='cart-title'>Mi Carrito</h1>
                 {cart.length === 0 ? (
                     <p className='cart-empty'>Todavía no agregaste productos 🛒</p>
@@ -27,12 +27,12 @@ const CartScreen = () => {
                     <>
                         <div className='cart-items'>
                             {cart
-                                .filter(item => item.product && typeof item.product === 'object') // aseguramos producto válido
+                                .filter(item => item.product && typeof item.product === 'object') 
                                 .map((item, index) => (
                                     <div className='cart-item' key={item.product._id || index}>
                                         <img src={item.product.image_base64} alt={item.product.title} className='cart-item-image' />
                                         <div className='cart-item-details'>
-                                            <h3>{item.product.title}</h3>
+                                            <h3 className='cart-item-title'>{item.product.title}</h3>
                                             <div className='cart-controls'>
                                                 <button className='qty-btn' onClick={() => updateQuantity(item.product._id, item.quantity - 1)}>-</button>
                                                 <span>{item.quantity}</span>
@@ -46,8 +46,8 @@ const CartScreen = () => {
                                 ))}
                         </div>
                         <div className='cart-summary'>
-                            <h2>Total: ${total.toLocaleString('es-AR')}</h2>
                             <button className="clear-cart-button" onClick={clearCart}> Vaciar carrito </button>
+                            <h2>Total: ${total.toLocaleString('es-AR')}</h2>
                             <button className='cart-checkout-button'>Finalizar compra</button>
                         </div>
                     </>

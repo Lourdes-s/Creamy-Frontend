@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }) => {
         sessionStorage.removeItem('user')
         setUser(null)
         setIsAuthenticated(false)
-        navigate('/login')
     }
 
     return (
