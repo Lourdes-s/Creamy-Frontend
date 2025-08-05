@@ -107,56 +107,29 @@
     padding: 0.5rem;
 }
 
-.delete-button {
-    background: none;
-    border: none;
-    color: #b0413e;
+.admin-menu a.edit-button,
+.admin-menu button.delete-button {
+    all: unset; /* Elimina estilos nativos de <a> y <button> */
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.95rem;
     font-weight: 500;
+    border-radius: 4px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    transition: background-color 0.2s ease;
 }
 
-.delete-button:hover {
-    text-decoration: underline;
-}.admin-actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.admin-menu a.edit-button {
+    color: var(--color-secundario);
 }
 
-.menu-toggle {
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    color: #555;
-}
-
-.admin-menu {
-    position: absolute;
-    top: 35px;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 10;
-    padding: 0.5rem;
-}
-
-.delete-button {
-    background: none;
-    border: none;
+.admin-menu button.delete-button {
     color: #b0413e;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
-.delete-button:hover {
+.admin-menu a.edit-button:hover,
+.admin-menu button.delete-button:hover {
     text-decoration: underline;
 }

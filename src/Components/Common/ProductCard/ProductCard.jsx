@@ -52,14 +52,11 @@ const ProductCard = ({ product, isAdmin, onDelete }) => {
 
             {isAdmin && (
                 <div className='admin-actions' ref={menuRef}>
-                    <button className='menu-toggle' onClick={() => setShowMenu(!showMenu)}>
-                        <FaEllipsisV />
-                    </button>
+                    <button className='menu-toggle' onClick={() => setShowMenu(!showMenu)}><FaEllipsisV /></button>
                     {showMenu && (
                         <div className='admin-menu'>
-                            <button className='delete-button' onClick={handleDelete}>
-                                Eliminar producto
-                            </button>
+                            <Link to={`/product/edit/${product._id}`} className='edit-button'onClick={() => setShowMenu(false)}>Editar producto</Link>
+                            <button className='delete-button' onClick={handleDelete}>Eliminar producto</button>
                         </div>
                     )}
                 </div>
