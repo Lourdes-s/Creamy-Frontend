@@ -12,21 +12,25 @@ const Nav = () => {
     const isAdmin = user?.role === 'admin'
 
     const [showDropdown, setShowDropdown] = useState(false)
-    const dropdownRef = useRef(null)
-    
+    const desktopDropdownRef = useRef(null)
+    const mobileDropdownRef = useRef(null)
+
     const [menuOpen, setMenuOpen] = useState(false)
 
     // Cierra el menú si se hace clic fuera
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setShowDropdown(false)
-            }
+useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (
+            desktopDropdownRef.current && !desktopDropdownRef.current.contains(event.target) &&
+            mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target)
+        ) {
+            setShowDropdown(false)
         }
+    }
 
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [])
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+}, [])
 
     return (
         <nav className='navbar'>
@@ -36,9 +40,9 @@ const Nav = () => {
                 </Link>
 
                 {/* Menú Desktop */}
-                <div className='dropdown desktop-only' ref={dropdownRef}>
-                    <button className='dropdown-toggle' onClick={() => setShowDropdown(!showDropdown)}> 
-                        Productos 
+                <div className='dropdown desktop-only' ref={desktopDropdownRef}>
+                    <button className='dropdown-toggle' onClick={() => setShowDropdown(!showDropdown)}>
+                        Productos
                     </button>
                     <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
                         <Link to='/categoria/cuidado-capilar'>Cuidado capilar</Link>
@@ -81,8 +85,8 @@ const Nav = () => {
             </div>
 
             {/* Botón Hamburguesa */}
-            <button 
-                className={`hamburger ${menuOpen ? 'active' : ''}`} 
+            <button
+                className={`hamburger ${menuOpen ? 'active' : ''}`}
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Menú"
             >
@@ -93,9 +97,9 @@ const Nav = () => {
 
             {/* Menú Mobile */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-                <div className='dropdown' ref={dropdownRef}>
-                    <button className='dropdown-toggle' onClick={() => setShowDropdown(!showDropdown)}> 
-                        Productos 
+                <div className='dropdown' ref={mobileDropdownRef}>
+                    <button className='dropdown-toggle' onClick={() => setShowDropdown(!showDropdown)}>
+                        Productos
                     </button>
                     <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
                         <Link to='/categoria/cuidado-capilar'>Cuidado capilar</Link>

@@ -33,7 +33,8 @@ const useProducts = () => {
     return {
         products_state,
         products_loading_state,
-        products_error_state
+        products_error_state, 
+        setProducts
     }
 }
 

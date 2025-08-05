@@ -53,7 +53,7 @@
     padding: 0.5rem 1rem;
     box-shadow: 0 8px 20px #a7855f49;
     border-radius: 8px;
-    z-index: 10;
+    z-index: 100000;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

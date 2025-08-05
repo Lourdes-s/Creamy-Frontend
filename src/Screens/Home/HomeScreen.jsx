@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import useProducts from '../../Hooks/useProducts.jsx'
-import { Link } from 'react-router-dom'
+import { AuthContext } from '../../Context/AuthContext.jsx'
 import Slider from '../../Components/Common/Slider/Slider.jsx'
 import { homeSliderImages } from '../../Data/sliderData.js'
 import ProductCard from '../../Components/Common/ProductCard/ProductCard.jsx'
@@ -9,7 +9,9 @@ import './home.css'
 
 
 const HomeScreen = () => {
-    const { products_state, products_loading_state, products_error_state } = useProducts()
+    const { products_state, products_loading_state, products_error_state, setProducts } = useProducts()
+    const { user } = useContext(AuthContext)
+    const isAdmin = user?.role === 'admin'
     return (
         <div className='screen-home'>
             <Nav />
@@ -28,7 +30,7 @@ const HomeScreen = () => {
                                         products_state.map(
                                             (product) => {
                                                 return (
-                                                    <ProductCard product={product} key={product._id} />
+                                                    <ProductCard product={product} key={product._id} isAdmin={isAdmin} onDelete={(id) => setProducts(prev => prev.filter(p => p._id !== id))} />
                                                 )
                                             }
                                         )
