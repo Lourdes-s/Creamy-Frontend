@@ -15,7 +15,6 @@ const categories = [
 
 const EditProductScreen = () => {
     const { product_id } = useParams()
-
     const [formState, setFormState] = useState(null)
     const [errorState, setErrorState] = useState({})
     const [successState, setSuccess] = useState(false)
@@ -115,7 +114,15 @@ const EditProductScreen = () => {
                 })
                 const data = await res.json()
                 if (res.ok) {
-                    setFormState(data.payload.product)
+                    const product = data.payload.product
+                    setFormState({
+                        title: product.title || '',
+                        price: product.price || '',
+                        stock: product.stock || '',
+                        description: product.description || '',
+                        category: product.category || '',
+                        image_base64: product.image_base64 || ''
+                    })
                 } else {
                     setErrorState({ general: 'Producto no encontrado' })
                 }
@@ -139,7 +146,6 @@ const EditProductScreen = () => {
                 body: JSON.stringify({ updated_data: updatedForm })
             })
             const data = await res.json()
-
             if (res.ok) {
                 setSuccess(true)
             } else {
