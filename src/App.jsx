@@ -1,6 +1,6 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-import { LoginScreen, RegisterScreen, RecoveryPasswordScreen, ForgotPasswordScreen, CreateProductScreen, ValidateMailScreen, AboutUs, ContactScreen, CartScreen, HomeScreen, ProductDetailScreen, CategoryScreen} from "./Screens"
+import { LoginScreen, RegisterScreen, RecoveryPasswordScreen, ForgotPasswordScreen, CreateProductScreen, ValidateMailScreen, AboutUs, ContactScreen, CartScreen, HomeScreen, ProductDetailScreen, CategoryScreen, EditProductScreen} from "./Screens"
 import ProtectedRoute from "./Components/ProtectedRoute"
     const App = () => {
         return (
@@ -20,6 +20,7 @@ import ProtectedRoute from "./Components/ProtectedRoute"
                 <Route element={<ProtectedRoute/>}>
                     <Route path="/carrito" element={<CartScreen/>}/>
                     <Route path="/product/new" element={<CreateProductScreen/>}/>
+                    <Route path="/product/edit/:product_id" element={<EditProductScreen/>}/>
                 </Route>
             </Routes>
         </div>
