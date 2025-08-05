@@ -5,6 +5,7 @@ import Slider from '../../Components/Common/Slider/Slider.jsx'
 import { homeSliderImages } from '../../Data/sliderData.js'
 import ProductCard from '../../Components/Common/ProductCard/ProductCard.jsx'
 import Nav from '../../Components/Common/Nav/Nav.jsx'
+import Footer from '../../Components/Common/Footer/Footer.jsx'
 import './home.css'
 
 
@@ -39,6 +40,7 @@ const HomeScreen = () => {
                         )
                 }
             </div>
+            <Footer />
         </div>
     )
 }
