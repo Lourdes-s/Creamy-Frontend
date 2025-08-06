@@ -40,7 +40,7 @@ const ProductCard = ({ product, isAdmin, onDelete }) => {
     }, [])
 
     return (
-        <div className='product-card'>
+        <div className={!showMenu ? 'product-card' : 'product-card-selected'}>
             <img src={product.image_base64} alt={product.title} className='product-image' />
             <div className='product-info'>
                 <h3>{product.title}</h3>
@@ -49,7 +49,6 @@ const ProductCard = ({ product, isAdmin, onDelete }) => {
                     <Link to={`/product/${product._id}`} className='product-link'>Ver detalle</Link>
                 </div>
             </div>
-
             {isAdmin && (
                 <div className='admin-actions' ref={menuRef}>
                     <button className='menu-toggle' onClick={() => setShowMenu(!showMenu)}><FaEllipsisV /></button>
